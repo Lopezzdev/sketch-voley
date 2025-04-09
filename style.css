@@ -1,0 +1,178 @@
+html{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image:url(./media/FondoBlur.jpeg) ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+#juego{
+    background-image:url(./media/Fondo2.jpeg) ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    width: 1920px;
+    height: 919px;
+    flex-shrink: 0;
+}
+
+#cancha{
+    width: 1000px;
+    height: 705px;
+    /* background-color: rgba(255, 0, 0, 0.2); */
+    position: absolute;
+    /* position:relative; */
+    top:160px;
+    left:455px;
+}
+
+#pelota,#jugador1,#red,#jugador2,#flecha,#num1,#num2,#globo1,#globo2{
+    position: absolute;
+}
+
+#red{
+    box-shadow: 40px 40px 20px black;
+}
+
+#movON,#movOFF,#saltoON,#movON2,#movOFF2,#saltoON2{
+    filter: drop-shadow(5px 5px 5px #222);
+}
+
+#pelota{
+    width: 40px;
+    height: 40px;
+    background-image: url(./media/pelota.png);
+    background-position: center;
+    background-size: contain;
+}
+#flecha{
+    width: 40px;
+    height: 30px;
+    background-image: url(./media/flecha.png);
+    background-position: center;
+    background-size: contain;
+    top:10px;
+}
+
+#jugador1,#jugador2{
+    height: 130px;
+    width: 130px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#movOFF,#movOFF2{
+    transform: scale(0.087);
+}
+#movON,#movON2{
+    transform: scale(0.17);
+}
+#saltoON2{
+    transform: scale(0.13);
+}
+
+#red{
+    background-color:rgb(39, 39, 39);
+    border: solid 2px black;
+    width: 5px;
+    height: 310px;
+    bottom:0px;
+    left:490px;
+    display: none;
+}
+
+#num1{
+    width: 40px;
+    height: 60px;
+    /* background-color: red; */
+    top:100px;
+    left:600px;
+    background-position: center;
+    background-size: contain;
+    /* background-image: url(./media/nums/0.png); */
+}
+#num2{
+    width: 40px;
+    height: 60px;
+    /* background-color: red; */
+    top:90px;
+    left:1200px;
+    background-position: center;
+    background-size: contain;
+    /* background-image: url(./media/nums/0.png); */
+}
+
+#globo1{
+    width: 80px;
+    height: 160px;
+    /* background-color: red; */
+    background-image: url(./media/globo.gif);
+    background-position: center;
+    background-size: contain;
+}
+#globo2{
+    width: 80px;
+    height: 160px;
+    /* background-color: red; */
+    background-image: url(./media/globo.gif);
+    background-position: center;
+    background-size: contain;
+}
+
+
+
+#prueba{
+    position:absolute;
+    bottom: 200px;
+    width: 20px;
+    height: 20px;
+    left: 1558px;
+    background-color: red;
+    z-index: -1;
+    /* display: flex; */
+    display: none;
+    justify-content: center;
+    border-radius: 50%;
+}
+#centroPrueba{
+    width: 2px;
+    height: 100%;
+    background-color: black;
+}
+#linea,#linea2{
+    width: 1px;
+    height: 130px;
+    background-color: red;
+    position:absolute;
+    bottom:0px;
+    left:500px;
+    display: none;
+}
+#debug{
+    width: 50px;
+    height: 20px;
+    background-color: black;
+    color: white;
+    display: none;
+}
