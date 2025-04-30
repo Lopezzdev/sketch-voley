@@ -24,23 +24,22 @@ let velInicial=60;
 let velocidadGeneral=11;
 
 //Escalado de pantalla
-let anchoJuego=1920;
-let altoJuego=919;
-let escalado;
+let anchoJuego=1350,altoJuego=950,mitadPantalla;
+let escalado,escaladoAux;
 
 ajustarEscala();
 window.addEventListener("resize", ajustarEscala);
-function ajustarEscala(){
-    
-    if(window.innerWidth/anchoJuego<window.innerHeight/altoJuego){
-        escalado=(window.innerWidth)/anchoJuego*0.9;
-    }else{
-        escalado=(window.innerHeight)/altoJuego*0.9;
-    }
 
-    if(window.innerWidth/anchoJuego<1){
-        document.getElementById("juego").style.cssText="transform:scale("+escalado+")";
-    }
+function ajustarEscala(){
+
+  if(window.innerWidth<anchoJuego)escalado=window.innerWidth/anchoJuego;
+  if(window.innerHeight<altoJuego)escaladoAux=window.innerHeight/altoJuego;
+
+  if(escaladoAux<escalado)escalado=escaladoAux;
+
+  document.getElementById("juego").style.cssText="transform:scale("+escalado+")";
+  
+  mitadPantalla=(window.innerWidth)/2;
 
 }
 
@@ -347,3 +346,87 @@ document.addEventListener('keyup', function(event) {
       movUp2=false;triggerUp2=false;
   }
 });
+
+
+
+//Control desde el celular
+
+document.getElementById("mitad1").addEventListener("touchstart",iniciar1);
+document.getElementById("mitad1").addEventListener("touchend",pararMouse1);
+
+document.getElementById("mitad2").addEventListener("touchstart",iniciar2);
+document.getElementById("mitad2").addEventListener("touchend",pararMouse2);
+
+let x1i,y1i,x2i,y2i;
+let dist1x,dist1y,dist2x,dist2y;
+let umbral=20;
+let toque1=0,toque2=0;
+
+function iniciar1(event){
+  event.preventDefault();
+
+  if(event.touches.length > 1){toque1=1}
+
+  document.getElementById("mitad1").addEventListener("touchmove", moverMouse1);
+
+  x1i=event.touches[toque1].clientX;
+  y1i=event.touches[toque1].clientY;
+  console.log(`X:${x1i} - Y:${y1i}`);
+}
+function iniciar2(event){
+  event.preventDefault();
+
+  if(event.touches.length > 1){toque2=1}
+
+  document.getElementById("mitad2").addEventListener("touchmove", moverMouse2);
+
+  x2i=event.touches[toque2].clientX;
+  y2i=event.touches[toque2].clientY;
+  console.log(`X:${x2i} - Y:${y2i}`);
+}
+
+function moverMouse1(e) {
+
+  dist1x=(e.touches[toque1].clientX-x1i).toFixed(0);
+  dist1y=(e.touches[toque1].clientY-y1i).toFixed(0);
+
+  // document.getElementById("debug1").innerHTML=`X:${dist1x},Y:${dist1y}`;
+
+  if(dist1x<-umbral)movIzq2=true;else movIzq2=false;
+
+  if(dist1x>umbral)movDer2=true;else movDer2=false;
+
+  if(dist1y<-umbral)salto2On=true;
+
+}
+function moverMouse2(e) {
+
+  dist2x=(e.touches[toque2].clientX-x2i).toFixed(0);
+  dist2y=(e.touches[toque2].clientY-y2i).toFixed(0);
+
+  // document.getElementById("debug2").innerHTML=`X:${dist2x},Y:${dist2y}`;
+
+  if(dist2x<-umbral)movIzq=true;else movIzq=false;
+
+  if(dist2x>umbral)movDer=true;else movDer=false;
+
+  if(dist2y<-umbral)salto1On=true;
+  
+
+
+}
+
+function pararMouse1(){
+  document.getElementById("mitad1").removeEventListener("touchmove", moverMouse1);
+
+  movIzq2=false;movDer2=false;
+  toque2=0;
+
+}
+function pararMouse2(){
+  document.getElementById("mitad2").removeEventListener("touchmove", moverMouse2);
+  
+  movIzq=false;movDer=false;
+  toque1=0;
+
+}
